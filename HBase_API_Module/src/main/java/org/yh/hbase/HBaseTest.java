@@ -9,6 +9,7 @@
 package org.yh.hbase;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 
 import java.io.Serializable;
 
@@ -26,7 +27,7 @@ public class HBaseTest implements Serializable {
     public static Configuration configuration;
 
     static {
-
+        HBaseConfiguration entries = new HBaseConfiguration();
 
     }
         

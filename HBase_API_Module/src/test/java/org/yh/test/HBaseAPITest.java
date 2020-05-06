@@ -12,6 +12,7 @@ import org.yh.hbase.HBaseAPIPractice;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.*;
 
 /**
  * @className HBaseAPIPractice
@@ -42,8 +43,8 @@ public class HBaseAPITest implements Serializable {
 
 
 		// 2.Test to create a hbase table.
-		 Boolean createTableResult = HBaseAPIPractice.createTable("0408:stu5", "info");
-		 log.info("whether the table was created successfully? " + createTableResult);
+		// Boolean createTableResult = HBaseAPIPractice.createTable("0408:stu5", "info");
+		// log.info("whether the table was created successfully? " + createTableResult);
 
 
 		// 3.Test to drop a hbase table
@@ -54,10 +55,57 @@ public class HBaseAPITest implements Serializable {
 		// Boolean createResult = HBaseAPIPractice.createNamespace("0408");
 		// log.info("Create name space result: " + createResult);
 
+		// 5.Test to put data to hbase table
+		// Boolean putResult = HBaseAPIPractice.putData("stu4", "1006", "info", "Gender", "Male");
+		// log.info("Put data to hbase table result: " + putResult);
+
+		// Test to put many line data to hbase table
+/*
+			List<String[]> listData = getListData();
+
+			listData = HBaseAPIPractice.putDataList(listData);
+
+			for (String[] linedata : listData) {
+				System.out.println(Arrays.toString(linedata));
+			}
+*/
+		// 6.Test to get data of hbase table
+/*
+		Map<String, String> info = new HashMap<>();
+		info.put("tableName", "stu4");
+		info.put("rowKey", "1001");
+		info.put("columnFamily", "info");
+		info.put("columnQualifier", "name");
+		HBaseAPIPractice.getData(info);
+*/
+		// 7.Test to scan data of hbase table
+		// HBaseAPIPractice.scanData("stu4");
+
+		// 8.Test to delete data of hbase table
+		Boolean deleteResult = HBaseAPIPractice.deleteDataOfHBaseTable("stu2", "1009", "info", "name");
+		log.info("Delete result: " + deleteResult);
+
 
 		// End.Close many resources
-		HBaseAPIPractice.close(HBaseAPIPractice.getConnection(), HBaseAPIPractice.getAdmin(), HBaseAPIPractice.getTableName());
+		HBaseAPIPractice.close(HBaseAPIPractice.getConnection(), HBaseAPIPractice.getAdmin());
 
     }
+
+    /**
+     * @methodName getListData
+     * @author YUAN_HAO
+     * @date 5/6/2020 9:05 AM
+     * @description
+     * @return java.util.List<java.lang.String[]>
+     */
+	private List<String[]> getListData() {
+		List<String[]> listData = new ArrayList<>();
+		listData.add(new String[]{"stu4", "1001", "info", "gender", "Female"});
+		listData.add(new String[]{"stu4", "1002", "info", "gender", "Male"});
+		listData.add(new String[]{"stu4", "1004", "info", "gender", "Female"});
+		listData.add(new String[]{"stu4", "1006", "info", "gender", "Female"});
+		listData.add(new String[]{"stu4", "1007", "info", "gender", "Male"});
+		return listData;
+	}
 
 }

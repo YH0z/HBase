@@ -8,14 +8,16 @@
  */
 package org.yh.hbase;
 
- import jdk.nashorn.internal.runtime.logging.Logger;
- import lombok.extern.log4j.Log4j;
  import org.apache.hadoop.conf.Configuration;
  import org.apache.hadoop.hbase.*;
  import org.apache.hadoop.hbase.client.*;
+ import org.apache.hadoop.hbase.util.Bytes;
 
  import java.io.IOException;
 import java.io.Serializable;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Map;
  import java.util.Objects;
 
 /**
@@ -41,7 +43,6 @@ public class HBaseAPIPractice implements Serializable {
     private static Connection connection;
     private static Admin admin;
     private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(HBaseAPIPractice.class);
-    private static TableName tableName;
 
 
     static {
@@ -50,6 +51,8 @@ public class HBaseAPIPractice implements Serializable {
 
         // 1.Set configuration information.
         configuration.set("hbase.zookeeper.quorum", "hadoop01:2181,hadoop02:2181,hadoop03:2181");
+        configuration.set("hbase.zookeeper.property.clientPort", "2181");
+
 
         // 2.Create Connection object
         try {
@@ -207,7 +210,7 @@ public class HBaseAPIPractice implements Serializable {
         try {
             admin.createNamespace(NamespaceDescriptor.create(nameSpace).build());
             return true;
-        } catch (org.apache.hadoop.hbase.NamespaceExistException e) {
+        } catch (NamespaceExistException e) {
             log.error("The '" + nameSpace + "' name space already exists, please reset name space", e);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -215,19 +218,238 @@ public class HBaseAPIPractice implements Serializable {
         return false;
     }
 
-    public static Boolean putData(String tableName, String rowKey, String Column,String value) throws IOException {
+    /**
+     * @methodName putData
+     * @author YUAN_HAO
+     * @date 5/5/2020 2:13 PM
+     * @description Put data to hbase table
+     * @param tableName
+     * @param rowKey
+     * @param columnFamily
+     * @param columnQualifier
+     * @param value
+     * @return java.lang.Boolean
+     */
+    public static Boolean putData(String tableName, String rowKey, String columnFamily, String columnQualifier,String value) throws IOException {
 
-        // Get table object
-        Table table = connection.getTable(TableName.valueOf(tableName));
+        try {
 
-        new Put()
+            // Get 'org.apache.hadoop.hbase.client.Table' object
+            Table table = connection.getTable(TableName.valueOf(tableName));
 
-        table.put();
+            // Get 'org.apache.hadoop.hbase.client.Put' object
+            Put put = new Put(Bytes.toBytes(rowKey));
 
-        table.close();
+            // Set 'Column Family', 'Column Qualifier' and 'value'
+            put.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(columnQualifier), Bytes.toBytes(value));
+
+            // Put data to hbase table
+            table.put(put);
+
+            // Close resource;
+            table.close();
+            return true;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
 
         return false;
     }
+
+    /**
+     * @methodName putDataList
+     * @author YUAN_HAO
+     * @date 5/5/2020 2:56 PM
+     * @description Put data list
+     * @param list
+     * @return java.util.List
+     */
+    public static List<String[]> putDataList(List<String[]> list) throws IOException {
+        List<String[]> newList = new ArrayList<>();
+
+        for (String[] lineData : list) {
+            String[] newLineData = new String[6];
+
+            // Put a line data and set result of put to 'newLineData[length-1]'
+            newLineData[newLineData.length - 1] = putData(lineData[0], lineData[1], lineData[2], lineData[3], lineData[4]).toString();
+
+            // Copy array
+            System.arraycopy(lineData, 0, newLineData, 0, lineData.length);
+
+            // Add List
+            newList.add(newLineData);
+        }
+        return newList;
+    }
+
+    /**
+     * @methodName getData
+     * @author YUAN_HAO
+     * @date 5/5/2020 3:18 PM
+     * @description Get data of hbase table
+     * @param info
+     *  Table name key: tableName
+     *  Row key : rowKey
+     *  Column family key: columnFamily
+     *  Column qualifier key: columnQualifier
+     * @return org.apache.hadoop.hbase.client.Result
+     */
+    public static Result getData(Map<String, String> info) throws IOException {
+
+        if (Objects.isNull(info.get("tableName"))) {
+            log.warn("The table name don's set, please set the table name");
+            return null;
+        }
+
+        if (Objects.isNull(info.get("rowKey"))) {
+            scanData(info.get("tableName"));
+            return null;
+        }
+
+        // Get 'org.apache.hadoop.hbase.client.Table' object
+        Table tableName = connection.getTable(TableName.valueOf(info.get("tableName")));
+
+        // Create 'org.apache.hadoop.hbase.client.Get' object and pass in 'rowKey'
+        Get getObject = new Get(Bytes.toBytes(info.get("rowKey")));
+
+        // Add columnFamily or columnQualifier
+        AddColumnFamilyAndColumnQualifier(info, getObject);
+
+        // Set versions of get data
+        if (Objects.nonNull(info.get("maxVersion"))) {
+            getObject.setMaxVersions(Integer.valueOf(info.get("maxVersion")));
+        }
+
+        // Get data
+        Result result = tableName.get(getObject);
+
+        // Analysis result and print result
+        analysisResultAndPrint(result);
+
+        // Close table connection
+        tableName.close();
+
+        return result;
+    }
+
+    /**
+     * @methodName scanData
+     * @author YUAN_HAO
+     * @date 5/6/2020 10:51 AM
+     * @description Scan a hbase table
+     * @param tableName
+     * @return org.apache.hadoop.hbase.client.ResultScanner
+     */
+    public static ResultScanner scanData(String tableName) throws IOException {
+        // Get ‘org.apache.hadoop.hbase.client.Table’ object
+        Table table = connection.getTable(TableName.valueOf(tableName));
+
+        // Build a 'org.apache.hadoop.hbase.client.Scan' object
+        Scan scan = new Scan(Bytes.toBytes("1001"), Bytes.toBytes("1004"));
+
+        // Scan the table
+        ResultScanner scanner = table.getScanner(scan);
+
+        // Analytical scannerResult
+        for (Result result : scanner) {
+            // Analytical result
+            analysisResultAndPrint(result);
+        }
+
+        // Close table connection
+        table.close();
+
+        return scanner;
+    }
+
+    /**
+     * @methodName deleteDataOfHBaseTable
+     * @author YUAN_HAO
+     * @date 5/6/2020 11:28 AM
+     * @description Delete data of hbase table
+     * @param tableName
+     * @param rowKey
+     * @param columnFamily
+     * @param columnQualifier
+     * @return java.lang.Boolean
+     */
+    public static Boolean deleteDataOfHBaseTable(String tableName, String rowKey, String columnFamily, String columnQualifier) throws IOException {
+        try {
+
+            // Get 'org.apache.hadoop.hbase.client.Table' object
+            Table table = connection.getTable(TableName.valueOf(tableName));
+
+            // Build 'org.apache.hadoop.hbase.client.Delete' object
+            Delete delete = new Delete(Bytes.toBytes(rowKey));
+
+            // Specify column family and column qualifier to delete
+//            delete.addColumns(Bytes.toBytes(columnFamily), Bytes.toBytes(columnQualifier));
+            // Specify column family to delete
+            delete.addFamily(Bytes.toBytes(columnFamily));
+
+
+            // Delete data
+            table.delete(delete);
+
+            // Close table connection
+            table.close();
+            return true;
+        } catch (Exception e) {
+            log.warn("Failed to delete data of " + tableName);
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @methodName analysisResultAndPrint
+     * @author YUAN_HAO
+     * @date 5/5/2020 4:04 PM
+     * @description Analysis result and print result
+     * @param result
+     * @return void
+     */
+    private static void analysisResultAndPrint(Result result) {
+        System.out.println();
+        for (Cell cell : result.rawCells()) {
+            // Print data
+            StringBuffer cellData = new StringBuffer()
+                    .append("RowKey: ")
+                    .append(Bytes.toString(CellUtil.cloneRow(cell)))
+                    .append("\tColumnFamily: ")
+                    .append(Bytes.toString(CellUtil.cloneFamily(cell)))
+                    .append("\tColumnQualifier: ")
+                    .append(Bytes.toString(CellUtil.cloneQualifier(cell)))
+                    .append("\tValue: ")
+                    .append(Bytes.toString(CellUtil.cloneValue(cell)))
+                    .append("\tTimeStamp: ")
+                    .append(cell.getTimestamp());
+            log.info(cellData);
+        }
+        System.out.println();
+    }
+
+    /**
+     * @methodName AddColumnFamilyAndColumnQualifier
+     * @author YUAN_HAO
+     * @date 5/5/2020 3:44 PM
+     * @description Add columnFamily or columnQualifier
+     * @param info
+     * @param getObject
+     * @return void
+     */
+    private static void AddColumnFamilyAndColumnQualifier(Map<String, String> info, Get getObject) {
+        // Add columnFamily and columnQualifier
+        if (Objects.nonNull(info.get("columnFamily")) && Objects.nonNull(info.get("columnQualifier"))) {
+            getObject.addColumn(Bytes.toBytes(info.get("columnFamily")), Bytes.toBytes(info.get("columnQualifier")));
+
+            // Only add columnFamily
+        } else if (Objects.nonNull(info.get("columnFamily")) && Objects.isNull(info.get("columnQualifier"))) {
+            getObject.addFamily(Bytes.toBytes(info.get("columnFamily")));
+        }
+    }
+
 
 
 
@@ -277,7 +499,4 @@ public class HBaseAPIPractice implements Serializable {
         return admin;
     }
 
-    public static TableName getTableName() {
-        return tableName;
-    }
 }

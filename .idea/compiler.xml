@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HBase_API_Module" />
+        <module name="HBaseAndMrInteraction" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="HBase_API_Module" target="1.8" />
+      <module name="HBaseAndMrInteraction" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,6 +6,22 @@
         <serverdata>
           <mappings>
             <mapping deploy="/root/jar/version3" local="$PROJECT_DIR$/HBaseAndMrInteraction" web="/" />
+            <mapping local="$PROJECT_DIR$" />
+            <mapping local="$PROJECT_DIR$/HBase_API_Module" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="hadoop02">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/jar/version3" local="$PROJECT_DIR$/HBaseAndMrInteraction" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="hadoop03">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/jar/version3" local="$PROJECT_DIR$/HBaseAndMrInteraction" web="/" />
           </mappings>
         </serverdata>
       </paths>

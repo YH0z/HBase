@@ -11,6 +11,7 @@ package org.yh.hbase;
  import org.apache.hadoop.conf.Configuration;
  import org.apache.hadoop.hbase.*;
  import org.apache.hadoop.hbase.client.*;
+ import org.apache.hadoop.hbase.filter.*;
  import org.apache.hadoop.hbase.util.Bytes;
 
  import java.io.IOException;
@@ -82,8 +83,6 @@ public class HBaseAPIPractice implements Serializable {
     public static Boolean doesTheTableExist(String tableName) throws IOException {
         // Get profile information.
         HBaseConfiguration configuration = new HBaseConfiguration();
-
-        // 1.Set configuration information.
         configuration.set("hbase.zookeeper.quorum", "hadoop01:2181,hadoop02:2181,hadoop03:2181");
 
         // 2.Get administrator object.
@@ -363,6 +362,55 @@ public class HBaseAPIPractice implements Serializable {
     }
 
     /**
+     * @methodName scanDataFilter
+     * @author YUAN_HAO
+     * @date 5/10/2020 11:23 AM
+     * @description Scan a hbase table and set filter list
+     * @param tableName
+     * @return void
+     */
+    public static void scanDataFilter(String tableName) throws IOException {
+        // Get 'org.apache.hadoop.hbase.client.Table' object
+        Table table = connection.getTable(TableName.valueOf(tableName));
+
+        // Create Scan object
+        Scan scan = new Scan();
+        scan.addColumn(Bytes.toBytes("info"), Bytes.toBytes("age"));
+        // Create Filter
+        Filter filter = new ValueFilter(CompareFilter.CompareOp.GREATER_OR_EQUAL,
+                new BinaryComparator(Bytes.toBytes("19")));
+
+        Filter filter2 = new ValueFilter(CompareFilter.CompareOp.LESS_OR_EQUAL,
+                new BinaryComparator(Bytes.toBytes("22")));
+
+        // Set scan RowKey range
+        scan.setStartRow(Bytes.toBytes("1003"));
+        scan.setStopRow(Bytes.toBytes("1005"));
+
+
+        // Create Filter list
+        FilterList filterList = new FilterList(filter, filter2);
+
+        // Set Filter
+        scan.setFilter(filterList);
+
+        // Get Scanner object
+        ResultScanner scanner = table.getScanner(scan);
+
+        // Analytical scannerResult
+        System.out.println();
+        for (Result result : scanner) {
+            // Analytical result
+            analysisResultAndPrint(result);
+        }
+        System.out.println();
+
+        // Close table connection
+        table.close();
+
+    }
+
+    /**
      * @methodName deleteDataOfHBaseTable
      * @author YUAN_HAO
      * @date 5/6/2020 11:28 AM
@@ -411,7 +459,6 @@ public class HBaseAPIPractice implements Serializable {
      * @return void
      */
     private static void analysisResultAndPrint(Result result) {
-        System.out.println();
         for (Cell cell : result.rawCells()) {
             // Print data
             StringBuffer cellData = new StringBuffer()
@@ -427,7 +474,6 @@ public class HBaseAPIPractice implements Serializable {
                     .append(cell.getTimestamp());
             log.info(cellData);
         }
-        System.out.println();
     }
 
     /**

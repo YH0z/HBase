@@ -10,6 +10,22 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="9df1ef29-21cd-48ce-9ab1-8bf408c9dc25" name="hadoop02" url="http://192.168.43.64">
+        <fileTransfer host="192.168.43.64" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions controlEncoding="UTF-8" dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="b613748a-e632-4f48-b0e0-ab0ded4eb3d6" name="hadoop03" url="http://192.168.43.65">
+        <fileTransfer host="192.168.43.65" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions controlEncoding="UTF-8" dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

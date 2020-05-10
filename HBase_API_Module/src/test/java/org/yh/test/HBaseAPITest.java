@@ -26,15 +26,15 @@ public class HBaseAPITest implements Serializable {
     private static final long serialVersionUID = 1L;
 	private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(HBaseAPIPractice.class);
 
-	/**
+	/**`
      * @methodName testJudgeWhetherTheTableExists
      * @author YUAN_HAO
      * @date 5/4/2020 1:01 PM
-     * @description Test 'stu4' table exists or not.
+     * @description
      * @return void
      */
     @Test
-    public void testJudgeWhetherTheTableExists() throws IOException {
+    public void test() throws IOException {
         // Boolean stu4 = org.yh.hbase.HBaseAPIPractice.doesTheTableExist("stu232");
 
 		// 1.Test the table exists or not.
@@ -82,8 +82,11 @@ public class HBaseAPITest implements Serializable {
 		// HBaseAPIPractice.scanData("stu4");
 
 		// 8.Test to delete data of hbase table
-		Boolean deleteResult = HBaseAPIPractice.deleteDataOfHBaseTable("stu2", "1009", "info", "name");
-		log.info("Delete result: " + deleteResult);
+		// Boolean deleteResult = HBaseAPIPractice.deleteDataOfHBaseTable("stu2", "1009", "info", "name");
+		// log.info("Delete result: " + deleteResult);
+
+		// 9.Test to scan data of hbase table and set filter
+		HBaseAPIPractice.scanDataFilter("stu4");
 
 
 		// End.Close many resources

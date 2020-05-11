@@ -1,0 +1,6 @@
+org\yh\mr1\FruitsDriver.class
+org\yh\mr3\ReadHdfsToHBaseMapper.class
+org\yh\mr3\ReadHdfsToHBaseReducer.class
+org\yh\mr3\ReadHdfsToHBaseDriver.class
+org\yh\mr1\FruitsMapper.class
+org\yh\mr1\FruitsReducer.class

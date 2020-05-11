@@ -1,0 +1,258 @@
+2020-05-07 15:40:42 [ main:1 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
+	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:67)
+	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:81)
+	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:96)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:69)
+2020-05-07 15:40:43 [ main:675 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-07 15:40:46 [ main:3753 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:40:46 [ main:3832 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:40:46 [ main:3835 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:40:46 [ main:3874 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-07 15:40:46 [ main:3876 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-07 15:40:46 [ main:3932 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:40:46 [ main:4000 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:54)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:72)
+2020-05-07 15:45:43 [ main:1 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
+	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:67)
+	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:81)
+	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:96)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:69)
+2020-05-07 15:45:44 [ main:696 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-07 15:45:48 [ main:4657 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:45:48 [ main:4738 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:45:48 [ main:4743 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:47:45 [ main:122358 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-07 15:47:45 [ main:122374 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-07 15:47:51 [ main:128181 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:50:16 [ main:273406 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:54)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:72)
+2020-05-07 15:54:14 [ main:2 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
+	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:67)
+	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:81)
+	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:96)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:69)
+2020-05-07 15:54:15 [ main:579 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-07 15:54:17 [ main:3237 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:54:17 [ main:3322 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:54:17 [ main:3326 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:54:17 [ main:3362 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-07 15:54:17 [ main:3363 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-07 15:54:18 [ main:3423 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:54:18 [ main:3437 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:54)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:72)
+2020-05-07 15:58:37 [ main:1 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
+	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:67)
+	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:81)
+	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:96)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:76)
+2020-05-07 15:58:37 [ main:673 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-07 15:58:40 [ main:3467 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:58:40 [ main:3567 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:58:40 [ main:3570 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 15:58:40 [ main:3603 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-07 15:58:40 [ main:3604 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-07 15:58:40 [ main:3660 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 15:58:40 [ main:3674 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:61)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:79)
+2020-05-07 16:00:38 [ main:1 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
+	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
+	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:67)
+	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:81)
+	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:96)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:76)
+2020-05-07 16:00:38 [ main:696 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-07 16:00:41 [ main:3530 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 16:00:41 [ main:3603 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 16:00:41 [ main:3607 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-07 16:00:41 [ main:3642 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-07 16:00:41 [ main:3643 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-07 16:00:41 [ main:3690 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-07 16:00:41 [ main:3703 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:61)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:79)
+2020-05-10 11:26:28 [ main:2 ] - [ ERROR ] Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:356)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:371)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:364)
+	at org.apache.hadoop.util.GenericOptionsParser.preProcessForWindows(GenericOptionsParser.java:440)
+	at org.apache.hadoop.util.GenericOptionsParser.parseGeneralOptions(GenericOptionsParser.java:486)
+	at org.apache.hadoop.util.GenericOptionsParser.<init>(GenericOptionsParser.java:170)
+	at org.apache.hadoop.util.GenericOptionsParser.<init>(GenericOptionsParser.java:153)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:64)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:78)
+2020-05-10 11:26:35 [ main:6851 ] - [ WARN ] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-05-10 11:26:40 [ main:11825 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-10 11:26:40 [ main:12257 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-10 11:26:40 [ main:12265 ] - [ WARN ] The hbase-prefix-tree module jar containing PrefixTreeCodec is not present.  Continuing without it.
+2020-05-10 11:26:40 [ main:12346 ] - [ INFO ] session.id is deprecated. Instead, use dfs.metrics.session-id
+2020-05-10 11:26:40 [ main:12347 ] - [ INFO ] Initializing JVM Metrics with processName=JobTracker, sessionId=
+2020-05-10 11:26:40 [ main:12486 ] - [ INFO ] io.bytes.per.checksum is deprecated. Instead, use dfs.bytes-per-checksum
+2020-05-10 11:26:40 [ main:12588 ] - [ WARN ] 
+java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:483)
+	at org.apache.hadoop.util.Shell.run(Shell.java:456)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:722)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:815)
+	at org.apache.hadoop.util.Shell.execCommand(Shell.java:798)
+	at org.apache.hadoop.fs.RawLocalFileSystem.setPermission(RawLocalFileSystem.java:728)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:486)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:527)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:504)
+	at org.apache.hadoop.fs.FilterFileSystem.mkdirs(FilterFileSystem.java:305)
+	at org.apache.hadoop.mapreduce.JobSubmissionFiles.getStagingDir(JobSubmissionFiles.java:125)
+	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:348)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1285)
+	at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1282)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1282)
+	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1303)
+	at org.yh.mr2.FruitsDriver.run(FruitsDriver.java:61)
+	at org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)
+	at org.yh.mr2.FruitsDriver.main(FruitsDriver.java:78)

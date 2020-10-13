@@ -11,7 +11,7 @@
 
 	<properties>
 		<!--<test.version>4.13-beta-3</test.version>-->
-		<test.version>4.12</test.version>
+		<test.version>4.13.1</test.version>
 		<hbase.version>1.2.1</hbase.version>
 		<commons.logging.version>1.2</commons.logging.version>
 		<taglibs.standard.spec.version>1.2.5</taglibs.standard.spec.version>
